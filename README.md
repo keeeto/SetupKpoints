@@ -17,11 +17,14 @@ If you do use it to generate the points **always remember** to cite the paper th
 
 Options:
   -h, --help            show this help message and exit
+  
   -f INPUT_FILE, --input=INPUT_FILE
                         The crystal structure. Default POSCAR
+                        
   -o OUTPUT_FILE, --output=OUTPUT_FILE
                         The file to which the new kpoints will be appended.
                         Default: KPOINTS.k_path.
+                        
   -r RESOLUTION, --resolution=RESOLUTION
                         a reference target distance between neighboring
                         k-points in the path, in units of 1/ang.
