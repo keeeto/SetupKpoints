@@ -31,4 +31,8 @@ Options:
 
 Example: 
 
-`python setup_kpoints.py -f GaN.gif -o KPTS -r 0.1`
+`python setup_kpoints.py -f GaN.cif -o KPTS -r 0.1`
+
+# Notes
+
+If obtaining `SeeKpath` using `pip` make sure that you are using `Python 2`. Although `pip3 install seekpath` will work, it does not support `Python 3`.

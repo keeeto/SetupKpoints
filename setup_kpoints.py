@@ -15,13 +15,21 @@ parser.add_option("-o", "--output",
 parser.add_option("-r", "--resolution",
                   action="store", type="float", dest="resolution", default=0.1,
                   help="a reference target distance between neighboring k-points in the path, in units of 1/ang.")
+parser.add_option("-t", action="store_true", dest="time_reversal",
+		  help="Turns off time reversal symmetry, if it is off and there is no centrosymmetry, additional lines are needed.")
 (options, args) = parser.parse_args()
 
 structure = io.read(options.input_file)
 numbers = structure.get_atomic_numbers()
 inp = (structure.cell,structure.get_scaled_positions(),numbers)
 
-explicit_data = seekpath.get_explicit_k_path(inp,reference_distance=options.resolution)
+# Turn off time reversal symmetry if necessary
+if not options.time_reversal:
+    tr = True
+else:
+    tr = False
+
+explicit_data = seekpath.get_explicit_k_path(inp,with_time_reversal=tr,reference_distance=options.resolution)
 
 kpath = explicit_data['explicit_kpoints_rel']
 
@@ -41,4 +49,6 @@ new_cell.set_atomic_numbers(new_data['conv_types'])
 
 print('New coordinates written to CONTCAR.conventional')
 io.write('CONTCAR.conventional',new_cell)
-
+print('Spacegroup: {} ({})'.format(new_data['spacegroup_international'], new_data['spacegroup_number']))
+print('Inversion symmetry?: {}'.format(new_data['has_inversion_symmetry']))
+print('I owe you nothing.')
