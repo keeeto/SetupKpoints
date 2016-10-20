@@ -28,6 +28,10 @@ Options:
   -r RESOLUTION, --resolution=RESOLUTION
                         a reference target distance between neighboring
                         k-points in the path, in units of 1/ang.
+                        
+  -t                    Turns off time reversal symmetry, if it is off and
+                        there is no centrosymmetry, additional lines are
+                        needed.                    
 
 Example: 
 
