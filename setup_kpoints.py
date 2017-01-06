@@ -48,7 +48,7 @@ new_cell.set_scaled_positions(new_data['conv_positions'])
 new_cell.set_atomic_numbers(new_data['conv_types'])
 
 print('New coordinates written to CONTCAR.conventional')
-io.write('CONTCAR.conventional',new_cell)
+ase.io.vasp.write_vasp('CONTCAR.conventional',new_cell,sort=True,vasp5=True)
 print('Spacegroup: {} ({})'.format(new_data['spacegroup_international'], new_data['spacegroup_number']))
 print('Inversion symmetry?: {}'.format(new_data['has_inversion_symmetry']))
 print('I owe you nothing.')
